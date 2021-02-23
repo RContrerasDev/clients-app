@@ -11,26 +11,18 @@ public class ClientValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Client.class.isAssignableFrom(clazz);
+		return Client.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
 		
-		if(errors.hasErrors())
-			return;
-		
 		Client client = (Client) target;
-		validateClient(errors, client);
-	}
-	
-	private void validateClient(Errors errors, Client client) {
 		
-		if(client.getName() == "") {
-			errors.reject("name", "name should not be empty");
-			return;
+		if(client.getName().isEmpty()) {
+			errors.rejectValue("name", "Name should not be empty");
 		}
-		return;
+		
 	}
 
 }

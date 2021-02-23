@@ -32,8 +32,7 @@ public class ClientService {
 	
 	@Transactional(readOnly = true)
 	public List<Client> getClients() throws Exception {
-		throw new NullPointerException();
-		//return clientDao.getClients();
+		return clientDao.getClients();
 	}
 	
 	@Transactional

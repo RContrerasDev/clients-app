@@ -2,26 +2,13 @@ package com.roboto.clients.models;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 public class Client implements Serializable{
 	
 	private static final long serialVersionUID = 5117246185518184155L;
 	
 	private Long id;
-	@NotEmpty
-	@NotNull
 	private String name;
-	@NotEmpty
-	@NotNull
 	private String lastName;
-	@NotEmpty
-	@NotNull
 	private String position;
 	
 	public Client() {}
