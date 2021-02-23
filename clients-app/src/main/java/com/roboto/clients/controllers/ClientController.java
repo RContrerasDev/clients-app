@@ -68,10 +68,7 @@ public class ClientController {
 	
 	
 	@PostMapping("/create")
-	public ResponseEntity<Client> createClient(@Valid @RequestBody Client client, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			log.info("Something went wrong");
-		}
+	public ResponseEntity<Client> createClient(@Valid @RequestBody Client client) {
 		return new ResponseEntity<>(clientService.createClient(client), HttpStatus.CREATED);
 	}
 

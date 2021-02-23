@@ -9,19 +9,18 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@JsonInclude(Include.NON_EMPTY)
 public class Client implements Serializable{
 	
 	private static final long serialVersionUID = 5117246185518184155L;
 	
 	private Long id;
-	@NotEmpty(message = "Name should not be empty")
+	@NotEmpty
 	@NotNull
 	private String name;
-	@NotEmpty(message = "LastName should not be empty")
+	@NotEmpty
 	@NotNull
 	private String lastName;
-	@NotEmpty(message = "Position should not be empty")
+	@NotEmpty
 	@NotNull
 	private String position;
 	

@@ -26,10 +26,7 @@ public class ClientValidator implements Validator {
 	
 	private void validateClient(Errors errors, Client client) {
 		
-		System.out.println("ROBOTO:: Validator working");
-		
 		if(client.getName() == "") {
-			System.out.println("ROBOTO:: Validator is working fine");
 			errors.reject("name", "name should not be empty");
 			return;
 		}
