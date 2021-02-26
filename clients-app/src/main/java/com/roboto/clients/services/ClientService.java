@@ -4,13 +4,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.roboto.clients.dao.ClientDao;
 import com.roboto.clients.models.Client;
 
-@Component
+@Service
 public class ClientService {
 	
 	@Autowired
