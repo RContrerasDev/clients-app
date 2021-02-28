@@ -4,16 +4,16 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,13 +39,10 @@ public class ClientController {
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(clientValidator);
 	}
-	
-	private static final Logger log = LoggerFactory.getLogger(ClientController.class);
 
 	@RequestMapping(value = "/client", method = RequestMethod.POST)
 	public ResponseEntity<Client> getClientById(@RequestBody Client request) {
 		Client client = clientService.getClientById(request);
-		log.info(request.getName());
 		if(client != null) {
 			return new ResponseEntity<Client>(client, HttpStatus.OK);
 		} else {
@@ -54,22 +51,29 @@ public class ClientController {
 		
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/list")
 	@ResponseStatus(HttpStatus.OK)
 	public List<Client> getClients() throws Exception {
 		return clientService.getClients();
-	}
-	
-//	@GetMapping("/")
-//	public String sayHello() {
-//		return "Hello World Spring!";
-//	}
-	
+	}	
 	
 	@PostMapping("/create")
 	public ResponseEntity<Client> createClient(@Valid @RequestBody Client client) {
 		Client response = clientService.createClient(client);
 		return new ResponseEntity<Client>(response, HttpStatus.OK);
 	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<Client> updateClient(@Valid @RequestBody Client client) {
+		Client response = clientService.updateClient(client);
+		return new ResponseEntity<Client>(response, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/delete")
+	public ResponseEntity<Integer> deleteClientById(@RequestBody Client request) {
+		clientService.deleteClientById(request);
+		return new ResponseEntity<Integer>(HttpStatus.NO_CONTENT);
+	}
+	
 
 }

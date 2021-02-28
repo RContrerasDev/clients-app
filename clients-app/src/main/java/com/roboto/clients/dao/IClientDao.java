@@ -11,5 +11,7 @@ public interface IClientDao {
 	public List<Client> getClients();
 	public Client createClient(Client client);
 	public boolean isClientExists(Long id);
+	public Client updateClient(Client client);
+	public void deleteClient(Long id);
 
 }

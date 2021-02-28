@@ -40,5 +40,15 @@ public class ClientService {
 		return clientDao.createClient(client);
 		//return client;
 	}
+	
+	@Transactional
+	public Client updateClient(Client client) {		
+		return clientDao.updateClient(client);
+	}
+	
+	@Transactional
+	public void deleteClientById(Client client) {
+		clientDao.deleteClient(client.getId());		
+	}
 
 }

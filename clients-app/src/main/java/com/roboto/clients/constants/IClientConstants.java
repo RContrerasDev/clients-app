@@ -20,5 +20,15 @@ public interface IClientConstants {
 			"SELECT COUNT(*) "
 			+ "FROM client "
 			+ "WHERE id = ?";
+	public static final String SQL_UPDATE_CLIENT = 
+			"UPDATE client "
+			+ "SET name = ?, "
+			+ "lastName = ?, "
+			+ "position = ? "
+			+ "WHERE id = ?";
+	public static final String SQL_DELETE_BY_ID = 
+			"DELETE "
+			+ "FROM client "
+			+ "WHERE id = ?";
 
 }

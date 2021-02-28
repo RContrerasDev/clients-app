@@ -48,8 +48,6 @@ public class ClientDao implements IClientDao {
 	@Override
 	public Client createClient(Client client) {
 		
-		System.out.println("ROBOTO:: Client name: " + client.getName());
-		
 		jdbcTemplate.update(
 				IClientConstants.SQL_CREATE_CLIENT, 
 				new Object[] {
@@ -69,6 +67,32 @@ public class ClientDao implements IClientDao {
 				new Object[] {id}, Integer.class);
 		
 		return count > 0 ? Boolean.TRUE : Boolean.FALSE;
+		
+	}
+
+	@Override
+	public Client updateClient(Client client) {
+		
+		if(isClientExists(client.getId())) {
+			
+			jdbcTemplate.update( IClientConstants.SQL_UPDATE_CLIENT, 
+					 new Object[] {
+							 client.getName(), 
+							 client.getLastName(), 
+							 client.getPosition(),
+							 client.getId()});			
+		}
+		 
+		return client;
+	}
+
+	@Override
+	public void deleteClient(Long id) {
+		
+		if(isClientExists(id)) {			
+			jdbcTemplate.update(IClientConstants.SQL_DELETE_BY_ID, 
+					new Object[] { id });			
+		}
 		
 	}
 	

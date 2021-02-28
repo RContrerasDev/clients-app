@@ -2,9 +2,13 @@ package com.roboto.clients.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -79,6 +83,18 @@ public class ClientControllerTests {
 		assertEquals(client.getName(), response.getName());
 		assertEquals(client.getLastName(), response.getLastName());
 		assertEquals(client.getPosition(), response.getPosition());
+		
+	}
+	
+	@Test
+	public void getClientsTest() throws Exception {
+		List<Client> clientsList = new ArrayList<Client>();
+		clientsList.add(getClientForTest());
+		ObjectMapper mapper = new ObjectMapper();
+		when(clientService.getClients()).thenReturn(clientsList);
+		final ResultActions result = this.mockMvc.perform(get("/api/list"));
+		result.andExpect(status().isOk());
+		List<Client> response = clientService.getClients();
 		
 	}
 	
