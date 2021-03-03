@@ -70,9 +70,9 @@ public class ClientController {
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<Integer> deleteClientById(@RequestBody Client request) {
+	public ResponseEntity<?> deleteClientById(@RequestBody Client request) {
 		clientService.deleteClientById(request);
-		return new ResponseEntity<Integer>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 
